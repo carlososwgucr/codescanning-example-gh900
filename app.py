@@ -1,7 +1,11 @@
-import os
+import sqlite3
 
-def run_command(user_input):
-    # ❌ Vulnerable a command injection
-    os.system("ping -c 1 " + user_input)
+def get_user(user_id):
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
 
-run_command("127.0.0.1; ls")
+    # ❌ SQL Injection
+    query = f"SELECT * FROM users WHERE id = {user_id}"
+    cursor.execute(query)
+
+get_user("1 OR 1=1")
