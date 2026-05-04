@@ -11,3 +11,4 @@ def get_user_data(user_input_id):
     print(f"DEBUG: Executing query: {query}")
     cursor.execute(query)
     return cursor.fetchall()
+    #comment
